@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>House Price Prediction</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+    <div class="container">
+
+        <h1>House Price Prediction</h1>
+
+        <p class="subtitle">
+            Enter house information to predict
+            the estimated price.
+        </p>
+
+
+        <form
+            action="/predict"
+            method="POST"
+        >
+
+            <label for="location">
+                Location
+            </label>
+
+            <input
+                type="text"
+                id="location"
+                name="location"
+                placeholder="Example: Mirpur"
+                required
+            >
+
+
+            <label for="area">
+                Area (sq ft)
+            </label>
+
+            <input
+                type="number"
+                id="area"
+                name="area"
+                placeholder="Example: 1200"
+                min="1"
+                required
+            >
+
+
+            <label for="bed">
+                Bedrooms
+            </label>
+
+            <input
+                type="number"
+                id="bed"
+                name="bed"
+                placeholder="Example: 3"
+                min="1"
+                required
+            >
+
+
+            <label for="bath">
+                Bathrooms
+            </label>
+
+            <input
+                type="number"
+                id="bath"
+                name="bath"
+                placeholder="Example: 2"
+                min="1"
+                required
+            >
+
+
+            <button type="submit">
+                Predict House Price
+            </button>
+
+        </form>
+
+
+        {% if prediction %}
+
+        <div class="result">
+
+            <h2>
+                Predicted Price
+            </h2>
+
+            <p>
+                {{ prediction }}
+            </p>
+
+        </div>
+
+        {% endif %}
+
+
+        {% if error %}
+
+        <div class="error">
+
+            <p>
+                {{ error }}
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>
